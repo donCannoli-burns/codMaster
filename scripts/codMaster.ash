@@ -41,7 +41,7 @@ string Slot_3_Prompt = `What gem would you like loaded in slot 3? \n Enter item 
 string Slot_4_Prompt = `What gem would you like loaded in slot 4? \n Enter item number.`;
 string Slot_5_Prompt = `What gem would you like loaded in slot 5? \n Enter item number.`;
 
-void init() {
+void set() {
   try {
     cli_execute('lookup "Decorate Your Eternity Codpiece"');
       }
@@ -127,12 +127,12 @@ void loadAllProperties(string fileName) {
 void codMasterHelper() {
     print_html("<font color=eda800><b>Welcome to codMaster!</b></font>");
     print("codMaster is a script to save and load different codpiece configurations");
-    print("To use the script, please run codMaster init before you run codMaster equip");
-    print("Setup Commands - inits must be run before equipGems;","teal");
-     print_html("<b>equipGems</b> - Equips the gems that are loaded in the current save file.");
-    print_html("<b>init</b> - Sets the gems to be used in each slot");
+    print("To use the script, please run codMaster set & codMaster save before you run codMaster equip");
+    print("Setup Commands - Set & Save must be run before equipGems;","teal");
+ 
+    print_html("<b>set</b> - Sets the gems to be used in each slot");
+    print_html("<b>equipGems</b> - Equips the gems that are loaded in the current save file.");
     print_html("<b>listSaves</b> - Lists all current save states. If you manually delete files from your data folder, this will be out of sync. Tracked by codMaster_validSaves");
-    print_html("<b>save (name)</b> - Saves current equipped gems codMaster to a file with the given name");
     print_html("<b>equip (name)</b> - Loads and equips gems from the file with the given name");
 }
 
@@ -141,17 +141,17 @@ void optional_help_info() {
     print("codMaster is a script to save and load different codpiece configurations");
     print("To use the script, please first run codMaster init, then codMaster save before you run codMaster equip");
     print("Setup Commands - inits must be run","teal");
-    print_html("<b>init</b> - Generic init that prompts for pathId. Use this for paths without a dedicated init.");
-    print_html("<b>listSaves</b> - Lists all current save states. If you manually delete files from your data folder, this will be out of sync. Tracked by codMaster_validSaves");
+    print_html("<b>set</b> - Generic init that prompts for pathId. Use this for paths without a dedicated init.");
     print_html("<b>save (name)</b> - Saves current state of codMaster to a file with the given name");
     print_html("<b>equip (name)</b> - Loads the state of codMaster from the file with the given name and equips gems");
+    print_html("<b>listSaves</b> - Lists all current save states. If you manually delete files from your data folder, this will be out of sync. Tracked by codMaster_validSaves");
 }
 void main(string input) {
      string [int] commands = input.split_string("\\s+");
     for(int i = 0; i < commands.count(); ++i){
         switch(commands[i].to_lower_case()){
-            case "init":
-                init();
+            case "set":
+                set();
                 return;
             case "save":
                 if(i + 1 < commands.count()) {

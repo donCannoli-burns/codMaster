@@ -11,13 +11,13 @@ void equipGems() {
 
     print(`Equpping slot 1`,'fuchsia');
     cli_execute('equip codpiece1 '+`{(Gem_1)}`);
-    print(`Equpping slot 1`,'fuchsia');
+    print(`Equpping slot 2`,'fuchsia');
     cli_execute('equip codpiece2 '+`{(Gem_2)}`);
-    print(`Equpping slot 1`,'fuchsia');
+    print(`Equpping slot 3`,'fuchsia');
     cli_execute('equip codpiece3 '+`{(Gem_3)}`);
-    print(`Equpping slot 1`,'fuchsia');
+    print(`Equpping slot 4`,'fuchsia');
     cli_execute('equip codpiece4 '+`{(Gem_4)}`);
-    print(`Equpping slot 1`,'fuchsia');
+    print(`Equpping slot 5`,'fuchsia');
     cli_execute('equip codpiece5 '+`{(Gem_5)}`);
     print(`Decorate Your Eternity Codpiece is complete!`,'fuchsia');
 

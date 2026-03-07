@@ -1,8 +1,15 @@
 script: "codMaster.ash"
 
-
+void clearGems() {
+    equip($slot[CODPIECE1],$item[none]);
+    equip($slot[CODPIECE2],$item[none]);
+    equip($slot[CODPIECE3],$item[none]);
+    equip($slot[CODPIECE4],$item[none]);
+    equip($slot[CODPIECE5],$item[none]);
+}
 
 void equipGems() {
+
     string Gem_1 = get_property("cod_master_Slot_1").to_int().to_item();
     string Gem_2 = get_property("cod_master_Slot_2").to_int().to_item();
     string Gem_3 = get_property("cod_master_Slot_3").to_int().to_item();
@@ -10,24 +17,24 @@ void equipGems() {
     string Gem_5 = get_property("cod_master_Slot_5").to_int().to_item();
 
     print(`Equpping slot 1`,'fuchsia');
-    cli_execute('equip codpiece1 '+`{(Gem_1)}`);
+    equip($slot[CODPIECE1],(Gem_1).to_item());
     print(`Equpping slot 2`,'fuchsia');
-    cli_execute('equip codpiece2 '+`{(Gem_2)}`);
+    equip($slot[CODPIECE2],(Gem_2).to_item());
     print(`Equpping slot 3`,'fuchsia');
-    cli_execute('equip codpiece3 '+`{(Gem_3)}`);
+    equip($slot[CODPIECE3],(Gem_3).to_item());
     print(`Equpping slot 4`,'fuchsia');
-    cli_execute('equip codpiece4 '+`{(Gem_4)}`);
+    equip($slot[CODPIECE4],(Gem_4).to_item());
     print(`Equpping slot 5`,'fuchsia');
-    cli_execute('equip codpiece5 '+`{(Gem_5)}`);
+    equip($slot[CODPIECE5],(Gem_5).to_item());
     print(`Decorate Your Eternity Codpiece is complete!`,'fuchsia');
 
 
 /*
-    equip($slot[CODPIECE1],$item[Gem_1]);
-    equip($slot[CODPIECE2],$item[Gem_2]);
-    equip($slot[CODPIECE3],$item[Gem_3]);
-    equip($slot[CODPIECE4],$item[Gem_4]);
-    equip($slot[CODPIECE5],$item[Gem_5]);
+    
+    equip($slot[CODPIECE2],(Gem_2);
+    
+    
+    equip($slot[CODPIECE5],(Gem_5);
 */
 
 
@@ -51,7 +58,6 @@ void set() {
     set_property("cod_master_Slot_3", user_prompt(Slot_3_Prompt));
     set_property("cod_master_Slot_4", user_prompt(Slot_4_Prompt));
     set_property("cod_master_Slot_5", user_prompt(Slot_5_Prompt));
-    print(`Now run codMaster save <your_cofig_name> to save the configuration!`,'fuchsia');
     }
 }
 void log() {
@@ -130,22 +136,15 @@ void codMasterHelper() {
     print("codMaster is a script to save and load different codpiece configurations");
     print("To use the script, please run codMaster set & codMaster save before you run codMaster equip");
     print("Setup Commands - Set & Save must be run before equipGems;","teal");
- 
     print_html("<b>set</b> - Sets the gems to be used in each slot");
-    print_html("<b>equipGems</b> - Equips the gems that are loaded in the current save file.");
+    print_html("<b>save (name)</b> - Saves your gem configuration to a name you pick. ");
+    print_html("<b>equip (name)</b> - Loads and equips gems from the configuration with the given name");
     print_html("<b>listSaves</b> - Lists all current save states. If you manually delete files from your data folder, this will be out of sync. Tracked by codMaster_validSaves");
-    print_html("<b>equip (name)</b> - Loads and equips gems from the file with the given name");
+    print_html("<b>other</b> - See other functions");
 }
 
 void optional_help_info() {
-    print_html("<font color=eda800><b>Welcome to codMaster!</b></font>");
-    print("codMaster is a script to save and load different codpiece configurations");
-    print("To use the script, please first run codMaster init, then codMaster save before you run codMaster equip");
-    print("Setup Commands - inits must be run","teal");
-    print_html("<b>set</b> - Generic init that prompts for pathId. Use this for paths without a dedicated init.");
-    print_html("<b>save (name)</b> - Saves current state of codMaster to a file with the given name");
-    print_html("<b>equip (name)</b> - Loads the state of codMaster from the file with the given name and equips gems");
-    print_html("<b>listSaves</b> - Lists all current save states. If you manually delete files from your data folder, this will be out of sync. Tracked by codMaster_validSaves");
+            print_html("<b>empty</b> - Clears all gems from your Codpiece.");
 }
 void main(string input) {
      string [int] commands = input.split_string("\\s+");
@@ -164,24 +163,24 @@ void main(string input) {
                 }
                 return;
             case "equip":
-             
-                if (get_property("codMaster_Slot_1") == "") {
-                    codMasterHelper();
-                } else {
                 if(i + 1 < commands.count()) {
                     i = i+1;
                     string saveName = commands[i];
-                    loadAllProperties(saveName);
+                   loadAllProperties(saveName);
                 } else {
                     print("Please provide a save name as an argument.", "red");
-                }}
+                }
+                 refresh_status();
                 equipGems();
+                return;
+            case "empty":
+                clearGems();
                 return;
             case "listsaves":
                 listSaves();
                 return;
-            case "option":
-                codMasterHelper();
+            case "other":
+                optional_help_info();
                 return;
             default:
                 codMasterHelper();

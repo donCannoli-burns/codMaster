@@ -7,10 +7,12 @@ A script for Kingdom of Loathing. To set, save and equip gem configurations for 
  &#10240; 🔹 To uninstall, run the following on the gCLI:
  >     git delete https://github.com/donCannoli-burns/codMaster.ash.git
  &#10240; 🔹 To start the script, run the following on the gCLI:
+ - To set gem configuration.
  >      codMaster init
->>      to set gem configuration.
+ - To save your gem configuration.
  >      codMaster save <your config name>
-> >      to save your gem configuration.
->       codMaster equip to equip your gem configuration.
+- codMaster equip to equip your gem configuration.  
+>       codMaster equip
+- To see other options.    
 >       codMaster help
-> >     to see other options    
+    

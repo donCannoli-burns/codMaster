@@ -51,6 +51,7 @@ void set() {
     set_property("cod_master_Slot_3", user_prompt(Slot_3_Prompt));
     set_property("cod_master_Slot_4", user_prompt(Slot_4_Prompt));
     set_property("cod_master_Slot_5", user_prompt(Slot_5_Prompt));
+    print(`Now run codMaster save <your_cofig_name> to save the configuration!`,'fuchsia');
     }
 }
 void log() {

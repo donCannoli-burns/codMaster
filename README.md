@@ -12,7 +12,7 @@ A script for Kingdom of Loathing. To set, save and equip gem configurations for 
  &#10240; 🔹 To save your gem configuration.
  >      codMaster save <your config name>
  &#10240; 🔹 To equip your gem configuration.  
->       codMaster equip
+>       codMaster equip <your config name>
  &#10240; 🔹 To see other options.    
 >       codMaster help
     
